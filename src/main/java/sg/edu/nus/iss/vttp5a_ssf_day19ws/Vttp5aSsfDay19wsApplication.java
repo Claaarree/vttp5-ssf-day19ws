@@ -1,9 +1,6 @@
 package sg.edu.nus.iss.vttp5a_ssf_day19ws;
 
 import java.io.File;
-import java.io.FileReader;
-import java.util.Collections;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.CommandLineRunner;
@@ -30,7 +27,6 @@ public class Vttp5aSsfDay19wsApplication implements CommandLineRunner{
 		if (appArgs.containsOption("file")) {
 			todo = appArgs.getOptionValues("file").getFirst();
 			File todoFile = new File(todo);
-			FileReaderService frs = new FileReaderService();
 			fileReaderService.initData(todoFile);
 		} else {
 			System.out.println("Please specify file path for todo file!");

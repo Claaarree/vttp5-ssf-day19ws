@@ -25,7 +25,7 @@ public class Todo {
 
     @NotEmpty(message = "Please select a due date!")
     @FutureOrPresent(message = "Please select a day from today!")
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    @DateTimeFormat(pattern = "E, MM/dd/yyyy")
     private Date dueDate;
 
     @NotEmpty(message = "Please select an appropriate priority level!")
@@ -34,10 +34,10 @@ public class Todo {
     @NotEmpty(message = "Please select an appropriate status level!")
     private String status;
 
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    @DateTimeFormat(pattern = "E, MM/dd/yyyy")
     private Date createAt;
 
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    @DateTimeFormat(pattern = "E, MM/dd/yyyy")
     private Date updatedAt;
    
     public Todo() {

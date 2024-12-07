@@ -8,6 +8,7 @@
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <h1>Here is your Todo List!</h1>
     <table class="table table-striped">
         <thead>
           <tr>
@@ -23,31 +24,18 @@
         </thead>
         <tbody>
             <!-- thymeleaf iteration below -->
-            <!-- <span th:each="item : ${list}">
+            <span th:each="todo : ${todos}">
                 <tr>
-                    <td name="eg1" th:utext="${item.variable1}"></td>
-                    <td name="eg2" th:utext="${item.variable2}"></td>
-                    <td name="eg3" th:utext="${item.variable3}"></td>
-                    <td name="eg4" th:utext="${item.variable4}"></td>
+                    <td name="id" th:utext="${todo.id}"></td>
+                    <td name="name" th:utext="${todo.name}"></td>
+                    <td name="description" th:utext="${todo.description}"></td>
+                    <td name="dueDate" th:utext="${#dates.format(todo.dueDate, 'E, MM/dd/yyyy')}"></td>
+                    <td name="priorityLevel" th:utext="${todo.priorityLevel}"></td>
+                    <td name="status" th:utext="${todo.status}"></td>
+                    <td name="createAt" th:utext="${#dates.format(todo.createAt, 'E, MM/dd/yyyy')}"></td>
+                    <td name="updatedAt" th:utext="${#dates.format(todo.updatedAt, 'E, MM/dd/yyyy')}"></td>
                 </tr>
-            </span> -->
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
+            </span>
         </tbody>
       </table>
 </body>

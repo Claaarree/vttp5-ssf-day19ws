@@ -1,11 +1,15 @@
 package sg.edu.nus.iss.vttp5a_ssf_day19ws.controller;
 
+import java.text.ParseException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import sg.edu.nus.iss.vttp5a_ssf_day19ws.model.Todo;
 import sg.edu.nus.iss.vttp5a_ssf_day19ws.service.TodoService;
 
 @Controller
@@ -15,9 +19,11 @@ public class TodoController {
     @Autowired
     TodoService todoService;
 
+    // where and how to handle parse exception?
     @GetMapping
-    public String getAllTodos(Model model) {
-
+    public String getAllTodos(Model model) throws ParseException {
+        List<Todo> todoList = todoService.getAllTodos();
+        model.addAttribute("todos", todoList);
         return "listing";
     }
 
