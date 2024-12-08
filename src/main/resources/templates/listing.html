@@ -17,7 +17,49 @@
             <th scope="col">Description</th>
             <th scope="col">Due Date</th>
             <th scope="col">Priority level</th>
-            <th scope="col">Status</th>
+            <th scope="col">Status<br>
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <!-- ?: is called the Elvis Operator -->
+                  <!-- Displays default text 'All' if status is null -->
+                  <span th:utext="${status} ?: 'All'">
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" th:href="@{/todos}">All</a></li>
+                  <li><a class="dropdown-item" th:href="@{/todos?status=completed}">Completed</a></li>
+                  <li><a class="dropdown-item" th:href="@{/todos?status=in_progress}">In progress</a></li>
+                  <li><a class="dropdown-item" th:href="@{/todos?status=pending}">Pending</a></li>
+                </ul>
+              </div>
+              <!-- <select>
+                <option value="">
+                  <a th:href="@{/todos}">All</a>
+                </option>
+                <option value="completed">
+                  <a th:href="@{/todos?status=completed}">Completed</a>
+                </option>
+                <option value="in_progress">
+                  <a th:href="@{/todos?status=in_progress}">In progress</a>
+                </option>
+                <option value="pending">
+                  <a th:href="@{/todos?status=in_progress}">Pending</a>
+                </option>
+              </select> -->
+              <!-- <select>
+                <option>
+                  <a th:href="@{/todos}">All</a>
+                </option>
+                <option>
+                  <a th:href="@{/todos?status=completed}">Completed</a>
+                </option>
+                <option>
+                  <a th:href="@{/todos?status=in_progress}">In progress</a>
+                </option>
+                <option>
+                  <a th:href="@{/todos?status=in_progress}">Pending</a>
+                </option>
+              </select> -->
+            </th>
             <th scope="col">Created at</th>
             <th scope="col">Updated at</th>
           </tr>

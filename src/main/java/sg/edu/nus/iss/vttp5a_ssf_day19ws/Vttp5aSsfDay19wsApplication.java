@@ -33,5 +33,6 @@ public class Vttp5aSsfDay19wsApplication implements CommandLineRunner{
 			System.exit(1);
 		}
 	}
+	// mvn spring-boot:run -Dspring-boot.run.arguments="--file=.\src\main\resources\static\JSON\todos.json"
 
 }

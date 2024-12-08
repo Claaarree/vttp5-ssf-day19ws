@@ -37,24 +37,26 @@ public class TodoService {
             Date rawCreatedAt = new Date(Long.parseLong(todo.getString("created_at")));
             Date rawUpdatedAt = new Date(Long.parseLong(todo.getString("updated_at")));
 
-            SimpleDateFormat sdf = new SimpleDateFormat("E, MM/dd/yyyy");
-            String formattedDueDate = sdf.format(rawDueDate);
-            String formattedCreatedAt = sdf.format(rawCreatedAt);
-            String formattedUpdatedAt = sdf.format(rawUpdatedAt);
+            // It doesn't matter what format the date is stored in as in the model!
+            // As long as it is formatted in the html it's fine!
+            // SimpleDateFormat sdf = new SimpleDateFormat("E, MM/dd/yyyy");
+            // String formattedDueDate = sdf.format(rawDueDate);
+            // String formattedCreatedAt = sdf.format(rawCreatedAt);
+            // String formattedUpdatedAt = sdf.format(rawUpdatedAt);
 
-            Date dueDate = sdf.parse(formattedDueDate);
-            Date createAt = sdf.parse(formattedCreatedAt);
-            Date updatedAt = sdf.parse(formattedUpdatedAt);
+            // Date dueDate = sdf.parse(formattedDueDate);
+            // Date createAt = sdf.parse(formattedCreatedAt);
+            // Date updatedAt = sdf.parse(formattedUpdatedAt);
             
             Todo to = new Todo();
             to.setId(todo.getString("id"));
             to.setName(todo.getString("name"));
             to.setDescription(todo.getString("description"));
-            to.setDueDate(dueDate);
+            to.setDueDate(rawDueDate);
             to.setPriorityLevel(todo.getString("priority_level"));
             to.setStatus(todo.getString("status"));
-            to.setCreateAt(createAt);
-            to.setUpdatedAt(updatedAt);
+            to.setCreateAt(rawCreatedAt);
+            to.setUpdatedAt(rawUpdatedAt);
 
             todoList.add(to);
         }
