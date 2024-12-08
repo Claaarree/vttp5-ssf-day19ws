@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body class="container">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Rememeber the th:action, method and th:object form attribute! -->
+    <h1>Login</h1><br>
+    <form th:action="@{/login}" method="post">
+      <div class="mb-3">
+        <label for="fullName" class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="fullName" name="fullName">
+        <!-- line below is for validation -->
+        <!-- <span class="alert alert-danger" th:if="${#fields.hasErrors('exampleInputPassword1') th:errors="*{exampleInputPassword1}"><span> -->
+      </div>  
+      <div class="mb-3">
+          <label for="age" class="form-label">Age</label>
+          <input type="number" class="form-control" id="age" name="age">
+          <!-- line below is for validation -->
+          <!-- <span class="alert alert-danger" th:if="${#fields.hasErrors('exampleInputPassword1') th:errors="*{exampleInputPassword1}"><span> -->
+        </div>
+        <!-- below is to display global errors -->
+        <!-- <span class="alert alert-danger" th:if="${#fields.hasErrors('global') data-th-text="${#fields.errors('global')}"><span> -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-primary">Reset</button>
+      </form>
+</body>
+</html>

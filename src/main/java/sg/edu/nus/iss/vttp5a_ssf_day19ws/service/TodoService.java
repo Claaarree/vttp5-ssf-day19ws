@@ -47,8 +47,8 @@ public class TodoService {
             // Date createAt = sdf.parse(formattedCreatedAt);
             // Date updatedAt = sdf.parse(formattedUpdatedAt);
             
-            Todo to = new Todo();
-            to.setId(todo.getString("id"));
+            Todo to = new Todo(todo.getString("id"));
+            // to.setId(todo.getString("id"));
             to.setName(todo.getString("name"));
             to.setDescription(todo.getString("description"));
             to.setDueDate(rawDueDate);
@@ -78,6 +78,33 @@ public class TodoService {
                 .add("updated_at", String.valueOf(updatedAtLong))
                 .build();
         
+        System.out.println("In addtodo service: "+ t.getId());
+
         todoRepo.addToHash(Constant.redisTodoKey, t.getId(), newTodo.toString());
 	}
+
+    public void deleteTodo(String id) {
+        todoRepo.deleteField(Constant.redisTodoKey, id);
+    }
+
+    public Todo getTodoById(String id) {
+        String todoString = todoRepo.getFieldValue(Constant.redisTodoKey, id);
+        Todo t = new Todo(id);
+        JsonReader jReader = Json.createReader(new StringReader(todoString));
+        JsonObject jObject = jReader.readObject();
+
+        Date rawDueDate = new Date(Long.parseLong(jObject.getString("due_date")));
+        Date rawCreatedAt = new Date(Long.parseLong(jObject.getString("created_at")));
+        Date rawUpdatedAt = new Date(Long.parseLong(jObject.getString("updated_at")));
+
+        t.setName(jObject.getString("name"));
+        t.setDescription(jObject.getString("description"));
+        t.setDueDate(rawDueDate);
+        t.setPriorityLevel(jObject.getString("priority_level"));
+        t.setStatus(jObject.getString("status"));
+        t.setCreateAt(rawCreatedAt);
+        t.setUpdatedAt(rawUpdatedAt);
+
+        return t;
+    }
 }

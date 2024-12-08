@@ -44,7 +44,12 @@ public class Todo {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @FutureOrPresent
     private Date updatedAt;
+
    
+    public Todo(String id) {
+        this.id = id;
+    }
+
     public Todo() {
         this.id = UUID.randomUUID().toString();
     }
