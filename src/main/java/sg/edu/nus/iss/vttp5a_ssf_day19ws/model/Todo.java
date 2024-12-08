@@ -8,24 +8,25 @@ import org.springframework.format.annotation.DateTimeFormat;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class Todo {
     @NotBlank(message = "Please input an appropriate id!")
-    @Size(min = 0, max = 50, message = "id must be less than 50 characters!")
+    @Size(min = 0, max = 50, message = "Id must be less than 50 characters!")
     private String id;
 
     @NotBlank(message = "Please input an appropriate name!")
-    @Size(min = 10, max = 50, message = "name must be between 10 to 50 characters!")
+    @Size(min = 10, max = 50, message = "Name must be between 10 to 50 characters!")
     private String name;
 
     @NotBlank(message = "Please input an appropriate description!")
-    @Size(min = 0, max = 255, message = "description must be less than 255 characters!")
+    @Size(min = 0, max = 255, message = "Description must be less than 255 characters!")
     private String description;
 
-    @NotEmpty(message = "Please select a due date!")
+    @NotNull(message = "Please select a due date!")
     @FutureOrPresent(message = "Please select a day from today!")
-    @DateTimeFormat(pattern = "E, MM/dd/yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dueDate;
 
     @NotEmpty(message = "Please select an appropriate priority level!")
@@ -34,13 +35,18 @@ public class Todo {
     @NotEmpty(message = "Please select an appropriate status level!")
     private String status;
 
-    @DateTimeFormat(pattern = "E, MM/dd/yyyy")
+    @NotNull(message = "Please select a created date!")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @FutureOrPresent
     private Date createAt;
 
-    @DateTimeFormat(pattern = "E, MM/dd/yyyy")
+    @NotNull(message = "Please select an update date!")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @FutureOrPresent
     private Date updatedAt;
    
     public Todo() {
+        this.id = UUID.randomUUID().toString();
     }
 
     public Todo(String name, String description, Date dueDate, String priorityLevel, String status,

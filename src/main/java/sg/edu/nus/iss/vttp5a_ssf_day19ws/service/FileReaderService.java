@@ -38,7 +38,7 @@ public class FileReaderService {
             jObjectString = jObjectString.replace(createdAtString, String.valueOf(createAtEpoch));
             jObjectString = jObjectString.replace(updatedAtString, String.valueOf(updatedAtEpoch));
 
-            todoRepo.addToHash(Constant.redisTodoKey, jsonObject.getString("id"), jObjectString);
+            todoRepo.addToHash(Constant.redisTodoKey, jsonObject.getString("id"), jObjectString.toString());
         }
     }
 }

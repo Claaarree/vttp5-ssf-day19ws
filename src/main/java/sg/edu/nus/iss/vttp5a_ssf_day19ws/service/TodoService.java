@@ -2,7 +2,6 @@ package sg.edu.nus.iss.vttp5a_ssf_day19ws.service;
 
 import java.io.StringReader;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -62,4 +61,23 @@ public class TodoService {
         }
         return todoList;
     }
+
+	public void addTodo(Todo t) {
+        Long dueDateLong = t.getDueDate().getTime();
+        Long createAtLong = t.getCreateAt().getTime();
+        Long updatedAtLong = t.getUpdatedAt().getTime();
+
+		JsonObject newTodo = Json.createObjectBuilder()
+                .add("id", t.getId())
+                .add("name", t.getName())
+                .add("description", t.getDescription())
+                .add("due_date", String.valueOf(dueDateLong))
+                .add("priority_level", t.getPriorityLevel())
+                .add("status", t.getStatus())
+                .add("created_at", String.valueOf(createAtLong))
+                .add("updated_at", String.valueOf(updatedAtLong))
+                .build();
+        
+        todoRepo.addToHash(Constant.redisTodoKey, t.getId(), newTodo.toString());
+	}
 }
