@@ -13,9 +13,9 @@
     <form th:action="@{/todos/edit/{t_id} (t_id=${todo.id})}" method="post" th:object="${todo}">
         <div class="mb-3">
           <label for="id" class="form-label">ID</label>
-          <input type="text" class="form-control" id="id" name="id" th:value="${todo.id}" disabled>
+          <input type="text" class="form-control" id="id" name="id" th:value="${todo.id}">
           <!-- line below is for validation -->
-          <!-- <span class="alert alert-danger" th:if="${#fields.hasErrors('exampleInputPassword1') th:errors="*{exampleInputPassword1}"><span> -->
+          <span class="alert alert-danger" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"><span>
         </div>
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>

@@ -1,6 +1,7 @@
 package sg.edu.nus.iss.vttp5a_ssf_day19ws.model;
 
 import java.util.Date;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,8 +13,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class Todo {
-    @NotBlank(message = "Please input an appropriate id!")
-    @Size(min = 0, max = 50, message = "Id must be less than 50 characters!")
+    // @NotBlank(message = "Please input an appropriate id!")
+    // @Size(min = 0, max = 50, message = "Id must be less than 50 characters!")
+    // private String id;
     private String id;
 
     @NotBlank(message = "Please input an appropriate name!")
@@ -46,17 +48,18 @@ public class Todo {
     private Date updatedAt;
 
    
-    public Todo(String id) {
-        this.id = id;
-    }
+    // public Todo(String id) {
+    //     this.id = id;
+    // }
 
     public Todo() {
-        this.id = UUID.randomUUID().toString();
+        // this.id = UUID.randomUUID().toString();
     }
 
-    public Todo(String name, String description, Date dueDate, String priorityLevel, String status,
+    public Todo(String id, String name, String description, Date dueDate, String priorityLevel, String status,
             Date createAt, Date updatedAt) {
-        this.id = UUID.randomUUID().toString();
+        this.id = Optional.of(id).orElse(UUID.randomUUID().toString());
+        // this.id = UUID.randomUUID().toString();
         this.name = name;
         this.description = description;
         this.dueDate = dueDate;

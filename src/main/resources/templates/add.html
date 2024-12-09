@@ -11,12 +11,12 @@
     <!-- Rememeber the th:action, method and th:object form attribute! -->
     <h1>Create New Todo!</h1><br>
     <form th:action="@{/todos/add}" method="post" th:object="${todo}">
-        <div class="mb-3">
+        <!-- <div class="mb-3">
           <label for="id" class="form-label">ID</label>
-          <input type="text" class="form-control" id="id" name="id" th:value="${todo.id}" disabled>
+          <input type="text" class="form-control" id="id" name="id" th:field="*{id}" disabled> -->
           <!-- line below is for validation -->
-          <!-- <span class="alert alert-danger" th:if="${#fields.hasErrors('exampleInputPassword1') th:errors="*{exampleInputPassword1}"><span> -->
-        </div>
+          <!-- <span class="alert alert-danger" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"><span>
+        </div> -->
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
           <input type="text" class="form-control" id="name" name="name" th:field="*{name}">
