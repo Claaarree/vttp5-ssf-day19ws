@@ -109,6 +109,7 @@ public class TodoController {
 
     // model attribute is the issue...
     // issit because it uses the empty constructor...yep
+    // therefore need to set the id using the path variable in the postmapping
     // just use path variable? yep
     @PostMapping("/todos/edit/{t_id}")
     public String handleEditTodo(@PathVariable (name = "t_id") String id, @ModelAttribute Todo t) {
