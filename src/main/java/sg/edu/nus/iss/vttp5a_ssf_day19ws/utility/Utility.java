@@ -10,6 +10,7 @@ import jakarta.json.JsonArray;
 import jakarta.json.JsonReader;
 
 public class Utility {
+    public static final String todoFilePath = "C:\\Users\\Clare Lau\\VTTP_SSF\\vttp5a-ssf-day19ws\\src\\main\\resources\\static\\JSON\\todos.json";
 
     public static JsonArray readJsonFile(File todoFile) {
         JsonArray dataRead = null;

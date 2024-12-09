@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import sg.edu.nus.iss.vttp5a_ssf_day19ws.service.FileReaderService;
+import sg.edu.nus.iss.vttp5a_ssf_day19ws.utility.Utility;
 
 @SpringBootApplication
 public class Vttp5aSsfDay19wsApplication implements CommandLineRunner{
@@ -22,17 +23,31 @@ public class Vttp5aSsfDay19wsApplication implements CommandLineRunner{
 	
 	@Override
 	public void run(String... args) throws Exception {
-		String todo = "";
-		ApplicationArguments appArgs = new DefaultApplicationArguments(args);
-		if (appArgs.containsOption("file")) {
-			todo = appArgs.getOptionValues("file").getFirst();
-			File todoFile = new File(todo);
-			fileReaderService.initData(todoFile);
+		if(args.length > 0) {
+			for (String arg : args) {
+				if (arg.startsWith("--file=")){
+					String todo = arg.replace("--file=", "");
+						File todoFile = new File(todo);
+						fileReaderService.initData(todoFile);
+				}
+			}
 		} else {
-			System.out.println("Please specify file path for todo file!");
-			System.exit(1);
+			File todoFile = new File(Utility.todoFilePath);
+			fileReaderService.initData(todoFile);
 		}
+
+		// String todo = "";
+		// ApplicationArguments appArgs = new DefaultApplicationArguments(args);
+		// if (appArgs.containsOption("file")) {
+		// 	todo = appArgs.getOptionValues("file").getFirst();
+		// 	File todoFile = new File(todo);
+		// 	fileReaderService.initData(todoFile);
+		// } else {
+		// 	System.out.println("Please specify file path for todo file!");
+		// 	System.exit(1);
+		// }
 	}
+	// java -jar target/vttp5a-ssf-day19ws-0.0.1-SNAPSHOT.jar --file=.\src\main\resources\static\JSON\todos.json
 	// mvn spring-boot:run -Dspring-boot.run.arguments="--file=.\src\main\resources\static\JSON\todos.json"
 
 }
