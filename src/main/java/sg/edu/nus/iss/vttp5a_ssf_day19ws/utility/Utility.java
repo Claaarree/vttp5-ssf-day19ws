@@ -15,6 +15,9 @@ public class Utility {
     public static JsonArray readJsonFile(File todoFile) {
         JsonArray dataRead = null;
         try {
+            // below line is to let online redis read local file
+            // path starts after resources
+            // InputStream is1 = getClass().getResourceAsStream("/static/JSON/todos.json");
             InputStream is = new FileInputStream(todoFile);
             JsonReader jReader = Json.createReader(is);
             dataRead = jReader.readArray();
