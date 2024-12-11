@@ -75,7 +75,7 @@ public class TodoController {
         // issue lies here.... 
         // it creates a new id everytime
         Todo t = new Todo();
-        // t.setId(UUID.randomUUID().toString());
+        t.setId(UUID.randomUUID().toString());
         System.out.println("In addtodo controller: "+ t.getId());
         model.addAttribute("todo", t);
         return "add";
@@ -83,7 +83,7 @@ public class TodoController {
 
     @PostMapping("/todos/add")
     public String handleTodoForm(@Valid @ModelAttribute Todo t, BindingResult result) {
-        t.setId(UUID.randomUUID().toString());
+        // t.setId(UUID.randomUUID().toString());
         System.out.println(t.getId());
         if (result.hasErrors()){
             return "add";

@@ -13,7 +13,7 @@
     <form th:action="@{/todos/edit/{t_id} (t_id=${todo.id})}" method="post" th:object="${todo}">
         <div class="mb-3">
           <label for="id" class="form-label">ID</label>
-          <input type="text" class="form-control" id="id" name="id" th:value="${todo.id}">
+          <input type="text" class="form-control" id="id" name="id" th:value="${todo.id}" readonly>
           <!-- line below is for validation -->
           <span class="alert alert-danger" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"><span>
         </div>
